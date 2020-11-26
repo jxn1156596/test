@@ -3,6 +3,11 @@
 <meta charset="UTF-8">
 <title>CountDown_vibration</title>
 <script type="text/javascript">
+            function PlaySound(soundObj) {
+                        var sound = document.getElementById(soundObj);
+                         sound.Play();
+                        }
+
             var maxtime = 15; //到着時間-出発時間の秒であるので後で引っ張って来る
             function CountDown() {
                 if (maxtime >= 0) {
@@ -12,9 +17,7 @@
                     document.all["timer"].innerHTML = msg;
                     if (maxtime == 1 * 10) //鳴動前の時間
                     alert("残り１０秒降りるよ");
-                    window.onload=function(){
-                      navigator.vibrate([200, 100, 200]);
-                        }
+                    PlaySound("sound1");
                         --maxtime;
                 } else{
                     clearInterval(timer);
@@ -23,6 +26,8 @@
             }
             timer = setInterval("CountDown()", 1000);
         </script>
+            <embed src="bibi.mp3" autostart="false" width="0" height="0" id="sound1"
+               enablejavascript="true">
 </head>
 <body>
 <div id="timer" style="color:red"></div>
