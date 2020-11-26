@@ -3,31 +3,53 @@
 <meta charset="UTF-8">
 <title>CountDown_vibration</title>
 <script type="text/javascript">
-//             function PlaySound(soundObj) {
-//                         var sound = document.getElementById(soundObj);
-//                          sound.Play();
-//                         }
 
-            var maxtime = 15; //到着時間-出発時間の秒であるので後で引っ張って来る
-            function CountDown() {
-                if (maxtime >= 0) {
-                    minutes = Math.floor(maxtime / 60);
-                    seconds = Math.floor(maxtime % 60);
-                    msg = "残り" + minutes + "分" + seconds + "秒";
-                    document.all["timer"].innerHTML = msg;
-                    if (maxtime == 1 * 10) //鳴動前の時間
-                    alert("残り１０秒降りるよ");
-                    document.getElementById("sound1").Play();
-                        --maxtime;
-                } else{
-                    clearInterval(timer);
-                    alert("到着した！");
+//自動的にボタンを押す動作
+  setTimeout(function() {
+      // IE
+      if(document.all) {
+          document.getElementById("self_click").click();
+      }
+      // 他のブラウザ
+      else {
+          var e = document.createEvent("MouseEvents");
+          e.initEvent("click", true, true);
+          document.getElementById("self_click").dispatchEvent(e);
+      }
+  }, 10000);
+//自動的にボタンを押す動作
+
+//振動
+  function vibrate() {
+    if('vibrate' in window.navigator) {
+      // window.navigator.vibrate(100); 振動
+        window.navigator.vibrate([200, 100, 200]); 
+    }else {
+        console.log("このブラウザが振動できない")
+        }
+      }
+//振動
+
+
+  var maxtime = 20; //到着時間-出発時間の秒であるので後で引っ張って来る
+    function CountDown() {
+      if (maxtime >= 0) {
+        minutes = Math.floor(maxtime / 60);
+        seconds = Math.floor(maxtime % 60);
+        msg = "残り" + minutes + "分" + seconds + "秒";
+        document.all["timer"].innerHTML = msg;
+          if (maxtime == 1 * 10) //鳴動前の時間
+            alert("残り１０秒降りるよ");
+              --maxtime;
+          } else{
+              clearInterval(timer);
+              alert("到着した！");
                 }
-            }
-            timer = setInterval("CountDown()", 1000);
-        </script>
-            <embed src="bibi.mp3" autostart="false" width="0" height="0" id="sound1"
-               enablejavascript="true">
+          }
+      timer = setInterval("CountDown()", 1000);
+  </script>
+  <input type="button" onclick="vibrate()" id="self_click"/>
+
 </head>
 <body>
 <div id="timer" style="color:red"></div>
