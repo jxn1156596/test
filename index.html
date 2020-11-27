@@ -1,42 +1,12 @@
+<!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>CountDown_vibration</title>
-<input type="button" id="self_click" onclick="vibrate();" value="clickme">
-
-<script type="text/javascript">
-
-//自動的にボタンを押す動作
-  setTimeout(function() {
-      // IE
-      if(document.all) {
-          document.getElementById("self_click").click();
-      }
-      // 他のブラウザ
-      else {
-          var e = document.createEvent("MouseEvents");
-          e.initEvent("click", true, true);
-          document.getElementById("self_click").dispatchEvent(e);
-      }
-  }, 1000);
-//自動的にボタンを押す動作
-
-//振動
-function vibrate() {
-    if('vibrate' in window.navigator) {
-       window.navigator.vibrate(100); //振動
-       // window.navigator.vibrate([200, 100, 200]); 
-    }else {
-        console.log("このブラウザが振動できない")
-        }
-      }
-//振動
-
-</script>
-
-</head>
 <body>
-<div id="timer" style="color:red"></div>
-<div id="warring" style="color:red"></div>
+
+<audio controls="controls" autoplay="autoplay">
+  <source src="/i/song.ogg" type="audio/ogg" />
+  <source src="/i/song.mp3" type="audio/mpeg" />
+Your browser does not support the audio element.
+</audio>
+
 </body>
 </html>
