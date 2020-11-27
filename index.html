@@ -1,12 +1,38 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<body>
 
-<audio controls="controls" autoplay="autoplay">
-  <source src="/i/song.ogg" type="audio/ogg" />
-  <source src="/i/song.mp3" type="audio/mpeg" />
-Your browser does not support the audio element.
-</audio>
+<head>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <meta charset="utf-8">
+    <title>test</title>
+    <script language="javascript" type="text/javascript">
+        function autoPlay() {
+            var myAuto = document.getElementById('myaudio');
+            myAuto.play();
+        }
+        function closePlay() {
+            var myAuto = document.getElementById('myaudio');
+            myAuto.pause();
+            myAuto.load();
+        }
+        $(function(){
+              setTimeout(function(){
+                  var alert = document.getElementById('self_click');//给你的a标签加一个id :btnBuy
+                  alert.click();
+              },3000);//后面的3000是以毫秒为单位。
+          });
+
+    </script>
+</head>
+
+<body>
+    <audio src="/Users/tech-camp/vibration/bibi.mp3" id="myaudio" controls="controls" loop="false" hidden="true">
+
+    </audio>
+    <input type="button" onclick="autoPlay()" id="self_click"value="播放" />
+    <input type="button" onclick="closePlay()" value="关闭" />
 
 </body>
+
 </html>
